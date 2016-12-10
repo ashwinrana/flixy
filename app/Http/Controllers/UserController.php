@@ -49,7 +49,15 @@ class UserController extends Controller
 
     function profile($id)
     {
-        $users = User::find($id);
+        if( is_numeric(  $id ))
+        {
+            $users = User::findOrFail($id);
+        }
+
+        if( !is_numeric(  $id ))
+        {
+            $users = User::where( 'user_name', $id)->first();
+        }
 
         return view('users.user')->with('user',$users);
 
@@ -58,11 +66,11 @@ class UserController extends Controller
 
     function User($user_name)
     {
-        $user = User::where('user_name',$user_name);
-        if(!$user){
-            abort(404);
-        }
-        return view('users.user')->with('user',$user);
+//        $user = User::where('user_name',$user_name)->first();
+//        if(!$user){
+//            abort(404);
+//        }
+//        return view('users.user')->with('user',$user);
 
     }
 

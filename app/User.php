@@ -25,6 +25,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['full_name'];
+
     function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
@@ -49,5 +51,10 @@ class User extends Authenticatable
 //    function sentRequest() {
 //        return $this->hasMany( FriendRequest::class, 'send_from');
 //    }
+
+    function getFullNameAttribute() {
+
+        return $this->first_name . " " . $this->last_name;
+    }
 
 }

@@ -35,7 +35,6 @@
       Route::get('/create','UserController@create')->name('create');
       Route::post('/users','UserController@store')->name('store');
       Route::get('/profile/{id}','UserController@profile')->name('profile');
-      Route::get('/profile/{user_name}','UserController@User')->name('pro');
       Route::get('/friend-request/{from}/{to}','FriendRequestController@index')->name('friendRequest');
       Route::get('/friend-requests/{user}','FriendRequestController@requests')->name('requests');
 
